@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "EA7C91EF-2F2B-4CEE-AA80-28F53A5B2787",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..\/RecipeKit",
+        "identifier" : "RecipeKitTests",
+        "name" : "RecipeKitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

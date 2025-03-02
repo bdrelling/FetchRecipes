@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D35315852D7518E900AD39F3 /* RecipeKit in Frameworks */ = {isa = PBXBuildFile; productRef = D35315842D7518E900AD39F3 /* RecipeKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D353156D2D7508DD00AD39F3 /* RecipeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D35315802D750D4000AD39F3 /* RecipeKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = RecipeKit; path = ../RecipeKit; sourceTree = SOURCE_ROOT; };
@@ -24,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D35315852D7518E900AD39F3 /* RecipeKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,6 +40,7 @@
 			children = (
 				D353156F2D7508DD00AD39F3 /* RecipeApp */,
 				D35315802D750D4000AD39F3 /* RecipeKit */,
+				D35315832D7518E900AD39F3 /* Frameworks */,
 				D353156E2D7508DD00AD39F3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,6 +51,13 @@
 				D353156D2D7508DD00AD39F3 /* RecipeApp.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D35315832D7518E900AD39F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -67,6 +80,7 @@
 			);
 			name = RecipeApp;
 			packageProductDependencies = (
+				D35315842D7518E900AD39F3 /* RecipeKit */,
 			);
 			productName = RecipeApp;
 			productReference = D353156D2D7508DD00AD39F3 /* RecipeApp.app */;
@@ -334,6 +348,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D35315842D7518E900AD39F3 /* RecipeKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RecipeKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D35315652D7508DD00AD39F3 /* Project object */;
 }

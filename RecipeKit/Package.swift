@@ -4,6 +4,10 @@ import PackageDescription
 
 let package = Package(
     name: "RecipeKit",
+    platforms: [
+        .iOS(.v16),
+        // Other platforms are currently unsupported
+    ],
     products: [
         .library(name: "RecipeKit", targets: ["RecipeKit"]),
     ],
@@ -15,6 +19,9 @@ let package = Package(
             name: "RecipeKitTests",
             dependencies: [
                 .target(name: "RecipeKit"),
+            ],
+            exclude: [
+                "Samples",
             ]
         ),
     ]

@@ -23,3 +23,5 @@
 ## Additional Information
 
 > _Is there anything else we should know? Feel free to share any insights or constraints you encountered._
+
+- I linted with [SwiftLint](https://github.com/realm/SwiftLint) throughout development and just prior to submission. I strongly believe that (properly configured) linting and formatting tools should be used from day one, doubly so for projects with more than a single contributor.

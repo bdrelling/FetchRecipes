@@ -20,7 +20,7 @@ final class RecipeAPITests {
     @Test
     func testGetRecipesSucceeds() async throws {
         // GIVEN: A valid RecipeAPI object is configured
-        let api = try RecipeAPI()
+        let api = RecipeAPI()
 
         // WHEN: A request is made to fetch recipes
         let recipes = try await api.getRecipes()
@@ -33,7 +33,7 @@ final class RecipeAPITests {
     func testGetEmptyRecipesSuceeds() async throws {
         // GIVEN: An invalid RecipeAPI object is configured with a URL that returns an empty recipe list
         let emptyRecipesURL = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes-empty.json"
-        let api = try RecipeAPI(baseURL: emptyRecipesURL)
+        let api = RecipeAPI(baseURL: emptyRecipesURL)
 
         // WHEN: A request is made to fetch recipes from the URL
         let recipes = try await api.getRecipes()
@@ -46,7 +46,7 @@ final class RecipeAPITests {
     func testGetMalformedRecipesThrowsError() async throws {
         // GIVEN: An invalid RecipeAPI object is configured with a URL that returns malformed recipe data
         let malformedRecipesURL = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes-malformed.json"
-        let api = try RecipeAPI(baseURL: malformedRecipesURL)
+        let api = RecipeAPI(baseURL: malformedRecipesURL)
 
         // WHEN: A request is made to fetch recipes from the URL
         // THEN: A DecodingError is thrown

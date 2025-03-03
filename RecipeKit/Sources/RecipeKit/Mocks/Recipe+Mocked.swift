@@ -50,6 +50,9 @@ public extension Array where Element == Recipe {
     ]
     
     static func mocked(count: Int) -> Self {
-        (0..<count).compactMap { _ in Self.allMockedCases.randomElement() }
+        (0 ..< count).compactMap { index in
+            // Ensure idempodency by returning a predictable collection of elements rather than selecting at random
+            Self.allMockedCases[index % Self.allMockedCases.count]
+        }
     }
 }

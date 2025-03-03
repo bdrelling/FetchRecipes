@@ -4,12 +4,18 @@ import Foundation
 
 /// A networking client that handles fetching and decoding data.
 final class HTTPClient {
+    // MARK: Properties
+    
     private let decoder = JSONDecoder()
     private let session: URLSession
+    
+    // MARK: Initializers
 
     init(session: URLSession = .shared) {
         self.session = session
     }
+    
+    // MARK: Methods
 
     func data(from url: URL) async throws -> Data {
         let (data, _) = try await self.session.data(from: url)

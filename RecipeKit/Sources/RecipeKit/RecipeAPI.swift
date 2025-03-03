@@ -4,11 +4,17 @@ import Foundation
 
 // An API for fetching culinary recipes.
 public final class RecipeAPI {
+    // MARK: Constants
+    
     /// The base URL for the Recipe API.
     static let recipesURL = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json"
+    
+    // MARK: Properties
 
     private let client = HTTPClient()
     private let baseURL: String
+    
+    // MARK: Initializers
 
     /// An `internal` initializer for testing the `RecipeAPI` with various URLs.
     /// - Parameter baseURL: The URL to fetch recipes from.
@@ -19,6 +25,8 @@ public final class RecipeAPI {
     public convenience init() {
         self.init(baseURL: Self.recipesURL)
     }
+    
+    // MARK: Methods
 
     public func getRecipes() async throws -> [Recipe] {
         let response: RecipeResponse = try await self.client.decodedData(from: self.baseURL)

@@ -25,6 +25,20 @@ public extension Recipe {
         photoURLSmall: "https://d3jbb8n5wk0qxi.cloudfront.net/photos/258262f1-57dc-4895-8856-bf95aee43054/small.jpg",
         youtubeURL: "https://www.youtube.com/watch?v=43WgiNq54L8"
     )
+    
+    static let mockedPolishPancakes: Self = .mocked(
+        name: "Polskie NaleÅ›niki (Polish Pancakes)",
+        photoURLLarge: "https://d3jbb8n5wk0qxi.cloudfront.net/photos/8b526c42-5121-4ddf-b8f9-a0c1153b5c20/large.jpg",
+        photoURLSmall: "https://d3jbb8n5wk0qxi.cloudfront.net/photos/8b526c42-5121-4ddf-b8f9-a0c1153b5c20/small.jpg",
+        youtubeURL: "https://www.youtube.com/watch?v=EZS4ev2crHc"
+    )
+    
+    static let mockedPortugueseCustardTarts: Self = .mocked(
+        name: "Portuguese Custard Tarts",
+        photoURLLarge: "https://d3jbb8n5wk0qxi.cloudfront.net/photos/759e00ff-20fc-45c4-ae78-404280e84970/large.jpg",
+        photoURLSmall: "https://d3jbb8n5wk0qxi.cloudfront.net/photos/759e00ff-20fc-45c4-ae78-404280e84970/small.jpg",
+        youtubeURL: "https://www.youtube.com/watch?v=lWLCxui1Mw8"
+    )
 
     static let mockedRolyPoly: Self = .mocked(
         name: "Roly-Poly",
@@ -33,7 +47,14 @@ public extension Recipe {
         sourceURL: "https://www.bbcgoodfood.com/recipes/13354/jam-rolypoly",
         youtubeURL: "https://www.youtube.com/watch?v=5ZYWVQ8imVA"
     )
-
+    
+    static let mockedSugarPie: Self = .mocked(
+        name: "Sugar Pie",
+        photoURLLarge: "https://d3jbb8n5wk0qxi.cloudfront.net/photos/25624a61-cf25-4e26-8a3a-b38f347e3642/large.jpg",
+        photoURLSmall: "https://d3jbb8n5wk0qxi.cloudfront.net/photos/25624a61-cf25-4e26-8a3a-b38f347e3642/small.jpg",
+        youtubeURL: "https://www.youtube.com/watch?v=uVQ66jiL-Dc"
+    )
+    
     static let mockedWalnutRollGuzvara: Self = .mocked(
         name: "Walnut Roll Gužvara",
         photoURLLarge: "https://d3jbb8n5wk0qxi.cloudfront.net/photos/8f60cd87-20ab-419b-a425-56b7ad7c8566/large.jpg",
@@ -43,18 +64,14 @@ public extension Recipe {
 }
 
 public extension Array where Element == Recipe {
-    private static let allMockedCases: Self = [
+    static let mocked: Self = [
         .mockedBananaPancakes,
         .mockedBlackberryFool,
         .mockedEtonMess,
+        .mockedPolishPancakes,
+        .mockedPortugueseCustardTarts,
         .mockedRolyPoly,
+        .mockedSugarPie,
         .mockedWalnutRollGuzvara,
     ]
-
-    static func mocked(count: Int) -> Self {
-        (0 ..< count).compactMap { index in
-            // Ensure idempodency by returning a predictable collection of elements rather than selecting at random
-            Self.allMockedCases[index % Self.allMockedCases.count]
-        }
-    }
 }

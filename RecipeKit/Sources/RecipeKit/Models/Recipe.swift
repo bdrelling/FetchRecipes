@@ -4,6 +4,8 @@ import Foundation
 
 /// A culinary recipe.
 public struct Recipe: Sendable {
+    // MARK: Properties
+    
     /// The cuisine of the recipe.
     public var cuisine: String
 
@@ -24,6 +26,8 @@ public struct Recipe: Sendable {
 
     /// The URL of the recipe's YouTube video.
     public var youtubeURL: String?
+    
+    // MARK: Initializers
 
     private init(
         cuisine: String,

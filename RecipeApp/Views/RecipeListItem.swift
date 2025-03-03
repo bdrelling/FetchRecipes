@@ -1,26 +1,10 @@
-// Copyright © 2025 Brian Drelling. All rights reserved.
-
+import ImageCaching
 import RecipeKit
 import SwiftUI
 
-struct RecipeList: View {
-    var recipes: [Recipe]
-
-    var body: some View {
-        ScrollView([.vertical]) {
-            VStack(alignment: .leading, spacing: 16) {
-                ForEach(self.recipes) { recipe in
-                    RecipeListItem(recipe: recipe)
-                }
-            }
-            .padding()
-        }
-    }
-}
-
-// MARK: - Supporting Views
-
-private struct RecipeListItem: View {
+struct RecipeListItem: View {
+    // MARK: Properties
+    
     private var name: String
     private var cuisine: String
     private var imageURLString: String?
@@ -32,11 +16,13 @@ private struct RecipeListItem: View {
             return nil
         }
     }
+    
+    // MARK: Views
 
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
-            AsyncImage(url: self.imageURL) { phase in
-                if let image = phase.image {
+            CachedImage(url: self.imageURL) { image in
+                if let image {
                     image.resizable()
                 } else {
                     Rectangle()
@@ -67,6 +53,8 @@ private struct RecipeListItem: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 
+    // MARK: Initializers
+    
     init(recipe: Recipe) {
         self.name = recipe.name
         self.cuisine = recipe.cuisine
@@ -75,27 +63,8 @@ private struct RecipeListItem: View {
     }
 }
 
-// MARK: - Extensions
-
-extension Recipe: @retroactive Identifiable {
-    public var id: String {
-        self.uuid
-    }
-}
-
 // MARK: - Previews
 
 #Preview {
-    RecipeList(recipes: .mocked(count: 9))
-}
-
-struct RecipeAPIKey: EnvironmentKey {
-    static let defaultValue: RecipeAPI = .init()
-}
-
-extension EnvironmentValues {
-    var recipeAPI: RecipeAPI {
-        get { self[RecipeAPIKey.self] }
-        set { self[RecipeAPIKey.self] = newValue }
-    }
+    RecipeList(recipes: .mocked)
 }

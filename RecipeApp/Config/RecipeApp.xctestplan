@@ -14,7 +14,14 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:..\/RecipeKit",
+        "containerPath" : "container:RecipeKit",
+        "identifier" : "ImageCachingTests",
+        "name" : "ImageCachingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:RecipeKit",
         "identifier" : "RecipeKitTests",
         "name" : "RecipeKitTests"
       }

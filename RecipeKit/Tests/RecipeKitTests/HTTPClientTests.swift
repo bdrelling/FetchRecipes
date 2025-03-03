@@ -48,3 +48,4 @@ private struct HTTPBinGetResponse: Decodable {
     var origin: String
     var url: URL
 }
+

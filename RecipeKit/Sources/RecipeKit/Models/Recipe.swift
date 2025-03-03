@@ -9,7 +9,7 @@ public struct Recipe: Sendable {
 
     /// The name of the recipe.
     public var name: String
-    
+
     /// The unique identifier for the receipe. Represented as a UUID.
     public var uuid: String
 
@@ -24,7 +24,7 @@ public struct Recipe: Sendable {
 
     /// The URL of the recipe's YouTube video.
     public var youtubeURL: String?
-    
+
     private init(
         cuisine: String,
         name: String,
@@ -72,11 +72,11 @@ public extension Recipe {
     ) -> Self {
         // Enforcing cuisine to be "Mocked" ensures we don't accidentally misuse these types in production
         let cuisine = "Mocked"
-        
+
         // Allow a custom UUID to be set, but otherwise just use a random UUID
         // so that we can re-use the same mocked object multiple times as necessary.
         let uuid = uuid ?? UUID().uuidString
-        
+
         return self.init(
             cuisine: cuisine,
             name: name,

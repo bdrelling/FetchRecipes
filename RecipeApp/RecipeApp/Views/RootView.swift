@@ -1,9 +1,11 @@
+// Copyright © 2025 Brian Drelling. All rights reserved.
+
 import RecipeKit
 import SwiftUI
 
 struct RootView: View {
     @StateObject var viewModel: RootViewModel
-    
+
     var body: some View {
         RecipeList(recipes: self.viewModel.recipes)
             .task {
@@ -16,7 +18,7 @@ struct RootView: View {
                 await self.viewModel.loadRecipes()
             }
     }
-    
+
     init(viewModel: RootViewModel? = nil) {
         self._viewModel = .init(wrappedValue: viewModel ?? .init())
     }
@@ -26,19 +28,19 @@ struct RootView: View {
 
 final class RootViewModel: ObservableObject {
     private let api = RecipeAPI()
-    
+
     @Published var recipes: [Recipe]
     @Published var apiError: Error? = nil
-    
+
     init(recipes: [Recipe] = []) {
         self.recipes = recipes
     }
-    
+
     func loadRecipes() async {
         do {
             let recipes = try await self.api.getRecipes()
                 .sorted { $0.name < $1.name }
-            
+
             await MainActor.run {
                 self.recipes = recipes
             }

@@ -1,3 +1,5 @@
+// Copyright © 2025 Brian Drelling. All rights reserved.
+
 import Foundation
 
 extension Bool {

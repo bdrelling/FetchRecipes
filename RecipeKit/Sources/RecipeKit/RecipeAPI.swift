@@ -9,13 +9,13 @@ public final class RecipeAPI {
 
     private let client = HTTPClient()
     private let baseURL: String
-    
+
     /// An `internal` initializer for testing the `RecipeAPI` with various URLs.
     /// - Parameter baseURL: The URL to fetch recipes from.
     init(baseURL: String) {
         self.baseURL = baseURL
     }
-    
+
     public convenience init() {
         self.init(baseURL: Self.recipesURL)
     }

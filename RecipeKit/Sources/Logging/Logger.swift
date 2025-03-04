@@ -1,7 +1,9 @@
+// Copyright © 2025 Brian Drelling. All rights reserved.
+
 import Foundation
 
 /// A simplified logging system, meant to be easily replaced by something like `OSLog` or `swift-log` after prototyping.
-/// 
+///
 /// For now, it relies on printing to the console, regardless of environment, but allows us to classify console messages from the start.
 public enum Logger {}
 

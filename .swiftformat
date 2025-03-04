@@ -1,0 +1,46 @@
+#--------------------#
+# Rule Configuration #
+#--------------------#
+
+# set the header block to supplied text
+--header "Copyright © {year} Brian Drelling. All rights reserved."
+
+# make sure the self. prefix is added where appropriate
+--self insert
+
+# only strip unused arguments (replacing with _) in closures, not methods
+# --stripunusedargs closure-only
+
+# wrap function or type @attributes onto a separate line
+--funcattributes prev-line
+--typeattributes prev-line
+
+# include var @attributes on the same line
+--varattributes same-line
+
+# remove the underscore (_) separation in large numbers
+--binarygrouping none
+--decimalgrouping none
+--hexgrouping none
+--octalgrouping none
+--exponentgrouping disabled
+--fractiongrouping disabled
+
+# prevent preprocessor macros from additional indenting
+--ifdef no-indent
+
+#----------------#
+# Disabled Rules #
+#----------------#
+
+# Wrap the opening brace of multiline statements.
+# Disabled because this rule is non-configurable.
+--disable wrapMultilineStatementBraces
+
+# Mark unused function arguments with _.
+# Disabled because this rule is stripping the keyword "async" in closures (as of 0.49.13).
+--disable unusedArguments
+
+# Remove redundant backticks around identifiers.
+# Disabled because this rule is stripping the backticks from `self` when used to reduce ambiguation (as of 0.53.10)
+--disable redundantBackticks

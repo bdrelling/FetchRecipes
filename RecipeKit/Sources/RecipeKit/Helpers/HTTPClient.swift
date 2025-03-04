@@ -5,16 +5,16 @@ import Foundation
 /// A networking client that handles fetching and decoding data.
 final class HTTPClient {
     // MARK: Properties
-    
+
     private let decoder = JSONDecoder()
     private let session: URLSession
-    
+
     // MARK: Initializers
 
     init(session: URLSession = .shared) {
         self.session = session
     }
-    
+
     // MARK: Methods
 
     func data(from url: URL) async throws -> Data {
@@ -50,10 +50,10 @@ extension HTTPClient {
 
 // MARK: - Supporting Types
 
-enum HTTPClientError: LocalizedError {
+public enum HTTPClientError: LocalizedError {
     case invalidURL(_ url: String)
 
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case let .invalidURL(url): "Invalid URL: \(url)"
         }

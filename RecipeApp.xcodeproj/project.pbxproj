@@ -14,6 +14,7 @@
 /* Begin PBXFileReference section */
 		D353156D2D7508DD00AD39F3 /* RecipeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D35315802D750D4000AD39F3 /* RecipeKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RecipeKit; sourceTree = SOURCE_ROOT; };
+		D35316032D766FAE00AD39F3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,6 +41,7 @@
 		D35315642D7508DD00AD39F3 = {
 			isa = PBXGroup;
 			children = (
+				D35316022D766F9A00AD39F3 /* Supporting Files */,
 				D353156F2D7508DD00AD39F3 /* RecipeApp */,
 				D35315802D750D4000AD39F3 /* RecipeKit */,
 				D353156E2D7508DD00AD39F3 /* Products */,
@@ -52,6 +54,14 @@
 				D353156D2D7508DD00AD39F3 /* RecipeApp.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D35316022D766F9A00AD39F3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D35316032D766FAE00AD39F3 /* README.md */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

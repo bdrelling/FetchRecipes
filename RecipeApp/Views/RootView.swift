@@ -5,24 +5,50 @@ import SwiftUI
 
 struct RootView: View {
     // MARK: Properties
-    
-    @StateObject var viewModel: ViewModel
-    
+
+    @StateObject private var viewModel: ViewModel
+
     // MARK: Views
 
     var body: some View {
-        RecipeList(recipes: self.viewModel.recipes)
-            .task {
-                // Prevent network request on load in Xcode Previews
-                if !.isRunningInXcodePreview {
-                    await self.viewModel.loadRecipes()
-                }
-            }
-            .refreshable {
+        RecipeList(
+            recipes: self.viewModel.recipes,
+            header: { self.header }
+        )
+        .task {
+            // Prevent initial loading of recipes in Xcode Previews to avoid unnecessary network requests
+            // and allow previewing of populated and empty states
+            if !.isRunningInXcodePreview {
                 await self.viewModel.loadRecipes()
             }
+        }
+        .refreshable {
+            await self.viewModel.loadRecipes()
+        }
+        .alert(
+            "Error",
+            isPresented: self.$viewModel.isPresentingErrorAlert,
+            presenting: self.viewModel.apiError,
+            actions: { _ in },
+            message: { error in
+                Text(error.localizedDescription)
+            }
+        )
     }
-    
+
+    @ViewBuilder private var header: some View {
+        HStack(spacing: 32) {
+            Image(systemName: "chevron.down")
+            Text("Pull to Refresh")
+                .font(.subheadline)
+
+            Image(systemName: "chevron.down")
+        }
+        .padding(8)
+        .background(Color.primary.colorInvert())
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+
     // MARK: Initializers
 
     init(viewModel: ViewModel? = nil) {
@@ -35,19 +61,24 @@ struct RootView: View {
 extension RootView {
     final class ViewModel: ObservableObject {
         // MARK: Properties
-        
+
         private let api = RecipeAPI()
 
         @Published var recipes: [Recipe]
-        // TODO: Display error in UI
-        @Published var apiError: Error? = nil
-        
+        @Published var isPresentingErrorAlert: Bool = false
+
+        @Published var apiError: Error? = nil {
+            didSet {
+                self.isPresentingErrorAlert = self.apiError != nil
+            }
+        }
+
         // MARK: Initializers
 
         init(recipes: [Recipe] = []) {
             self.recipes = recipes
         }
-        
+
         // MARK: Methods
 
         func loadRecipes() async {
@@ -56,10 +87,15 @@ extension RootView {
                     .sorted { $0.name < $1.name }
 
                 await MainActor.run {
-                    self.recipes = recipes
+                    // Fade between the lists so it isn't such a jarring flash
+                    withAnimation(.default) {
+                        self.recipes = recipes
+                    }
                 }
             } catch {
-                self.apiError = error
+                await MainActor.run {
+                    self.apiError = error
+                }
             }
         }
     }
@@ -74,6 +110,10 @@ private extension RootView {
     }
 }
 
-#Preview {
+#Preview("Populated") {
     RootView(recipes: .mocked)
+}
+
+#Preview("Empty") {
+    RootView(recipes: [])
 }

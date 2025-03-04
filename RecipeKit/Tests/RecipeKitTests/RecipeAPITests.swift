@@ -1,7 +1,8 @@
 // Copyright © 2025 Brian Drelling. All rights reserved.
 
-@testable import RecipeKit
 import Testing
+
+@testable import RecipeKit
 
 final class RecipeAPITests {
     @Test
@@ -30,7 +31,7 @@ final class RecipeAPITests {
     }
 
     @Test
-    func testGetEmptyRecipesSuceeds() async throws {
+    func testGetEmptyRecipesSucceeds() async throws {
         // GIVEN: An invalid RecipeAPI object is configured with a URL that returns an empty recipe list
         let emptyRecipesURL = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes-empty.json"
         let api = RecipeAPI(baseURL: emptyRecipesURL)
@@ -53,7 +54,7 @@ final class RecipeAPITests {
         do {
             _ = try await api.getRecipes()
             Issue.record("An error should have been thrown due malformed data")
-        } catch is DecodingError {
+        } catch RecipeAPIError.unableToDecode {
             // Success
         } catch {
             Issue.record(error, "Incorrect error was thrown")
